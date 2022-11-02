@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="{% static 'css/Reportform.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>report</title>
+  </head>
+  <body>
+    <header
+      class="header bg-primary text-white d-flex align-items-center justify-content-between"
+    >
+      <h3 class="ml-3">Oriwo Boys Highschool</h3>
+      <h5 class="mr-5 bg-success text-white">
+        <a href="{% url 'login' %}">Log out</a>
+      </h5>
+    </header>
+    <div class="container">   
+      <h2>OFFICIAL STUDENT PERFORMANCE REPORT PAGE</h2>
+      <div class="exam w-100 d-flex align-items-center justify-content-between">
+        <select title="type" class="form-control w-25" name="exam_type">
+          <option>Select exam type</option>
+          <option value="opener">CAT 1</option>
+          <option value="mid">CAT 2</option>
+          <option value="end">End term Exam</option>
+        </select>
+        <select title="type" class="form-control w-25" name="term_type">
+          <option>Select Term</option>
+          <option value="term one">TERM 1</option>
+          <option value="term two">TERM 2</option>
+          <option value="term three">TERM 3</option>
+        </select>
+        <select title="type" class="form-control w-25" name="year_type">
+          <option>Select Class</option>
+          <option value="year1">FORM ONE</option>
+          <option value="year2">FORM TWO</option>
+          <option value="year3">FORM THREE</option>
+          <option value="year4">FORM FOUR</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="input-group-append btn btn-sm btn-primary w-25 mt-2"
+      >
+        Generate Report
+      </button>
+      <div class="sub-container">
+        <div class="report text-center">
+          <h4 class="tittle font-weight-bold">ORIWO BOYS HIGH SCHOOL</h4>
+          <h5>MOTTO:Mbele Daima</h5>
+        </div>
+        <div class="details">
+          <h4>Student Details</h4>
+          <div class="value0 font-weight-bold">
+            <p>Student Name:</p>
+            <p>Registration number:</p>
+          </div>
+          <div
+            class="value1 d-flex align-items-center justify-content-between w-50 font-weight-bold"
+          >
+            <p>Date of birth:</p>
+            <p>Class:</p>
+          </div>
+          <div
+            class="value2 d-flex align-items-center justify-content-between w-50 font-weight-bold"
+          >
+            <p>Exam:</p>
+            <p>Term:</p>
+          </div>
+          <div
+            class="value3 d-flex align-items-center justify-content-between w-50 font-weight-bold"
+          >
+            <p>Year:</p>
+            <p>Gender:</p>
+          </div>
+        </div>
+        <div class="markstable mt-2">
+          <h5>View Score</h5>
+          <table class="table table-bordered mt-2">
+            <thead>
+              <td>Code</td>
+              <td>Subject</td>
+              <td>Score</td>
+              <td>Grade</td>
+              <td>Remarks</td>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="2">Total</td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-sm bg-primary text-white float-right">
+            <i class="fa fa-download"></i> Download Result
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

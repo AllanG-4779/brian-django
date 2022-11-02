@@ -1,0 +1,28 @@
+body{
+    width: 100vw;
+    height:100vh;
+}
+.header{
+    height: 10%;
+}
+.container {
+    padding: 10px;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+}
+.sub-container{
+    padding:10px;
+    display: grid;
+    align-items: center;
+    }
+    .details{
+        padding: 8px;
+        
+    }
+    .details h4{
+        padding: 5px;
+        font-weight: 600;
+        color: blueviolet;
+    }
+    

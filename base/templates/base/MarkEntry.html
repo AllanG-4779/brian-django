@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marks Entry</title>
+    {% load static %}
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="{% static 'css/MarkEntry.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <header
+    class="header bg-primary text-white d-flex align-items-center justify-content-between"
+  >
+    <h3 class="ml-3">Oriwo Boys Highschool</h3>
+    <h5 class="mr-5">Hello Teacher: Name</h5>
+  </header>
+  <div class="container">
+    <h3>Student Marks Entry</h3>
+    <form
+    method="PUT"
+    action="{% url 'markentry' %}"
+    class="search d-flex-column mt-4"
+  >
+    {%csrf_token%}
+    <div class="form-group align-items-center">
+      <label for="admission">Search Student</label>
+      <div class="input-group">
+        <input
+          placeholder="Admission Number"
+          name="admission"
+          class="form-control outline-none"
+          type="text"
+        />
+        <button
+          type="submit"
+          class="input-group-append btn btn-sm btn-primary"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </form> 
+    <table class="table table-bordered mt-5">
+      <thead>
+        <th>No.</th>
+        <th>Student Name</th>
+        <th>Reg Number</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        {% for each in studentList %}
+        <tr>
+         <td> {{ studentList|length }}</td>
+         <td> {{each.firstname}} {{each.lastname}}</td>
+         <td> {{each.regNo}}</td>
+         <td><form action="{% url 'markentry' %}" method="GET">
+          <input type="hidden" value="{{ each.regNo }}" name="admission">
+          <button href="#markentry" type="submit" class="btn btn-sm btn-primary">Add Marks</button>
+         </form></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+    <div>
+      
+      {% if student %}
+     
+      <div class="marks d-flex-column flex-wrap">
+       
+        <form action="{% url 'markentry' %}" method="POST" id="markentry">
+          {%csrf_token%}
+          <div class="exam w-25">
+            <select title="type" class="form-control" name="exam_type">
+              <option>Select exam type</option>
+              <option value="opener">CAT 1</option>
+              <option value="mid">CAT 2</option>
+              <option value="end">End term Exam</option>
+            </select>
+          </div>
+          
+          <!-- admission number -->
+          <input type="hidden" value="{{student.regNo}}" name="admission" />
+          <div class="mark-inputs d-flex justify-content-between flex-wrap">
+            {% for i in subjects %}
+            <div class="mt-4 each-sub">
+              <label>{{i}}</label>
+              <input
+                max="100"
+                title="marks"
+                type="number"
+                name="{{i}}"
+               
+                class="form-control"
+              />
+            </div>
+            {% endfor %}
+          </div>
+          <div class="w-100 d-flex justify-content-end">
+            <button
+              type="submit"
+              class="btn btn-md btn-primary w-25 mt-4 justify-self-end"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+      {% endif %} {{search}}
+    </div>
+
+</html>

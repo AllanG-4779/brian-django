@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+body {
+    margin: 0;
+    padding: 0;
+    background: #9bedfa;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+  }
+  h3[class="text-center text-info"]{
+    margin: 30px 0;
+  }
+  #login .container #login-row #login-column #login-box {
+    margin-top: 80px;
+    max-width: 600px;
+    height: 450px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+    border-radius: 15px;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+  input[type="submit"]{
+    margin: 10px 0;
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #EAEAEA;
+    font-weight: 700;
+    outline: none;
+  }
+  .ForgotPassword-link{
+    margin: 30px 0;
+  }

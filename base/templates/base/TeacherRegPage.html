@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeacherRegistration</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/TeacherRegPage.css' %}" />
+  </head>
+  <body>
+    <section class="h-100 bg-dark">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card card-registration my-4">
+              <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                    alt="Admin photo"
+                    class="img-fluid"
+                    style="
+                      border-top-left-radius: 0.25rem;
+                      border-bottom-left-radius: 0.25rem;
+                    "
+                  />
+                </div>
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    <h3 class="mb-5 text-uppercase">
+                      Teacher registration form
+                    </h3>
+                    <p class="alert alert-primary">{{success}}</p>
+                    <form
+                      method="POST"
+                      action="{% url 'teacherregistration' %}"
+                    >
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.firstname}}
+                            <label class="form-label" for="form3Example1m"
+                              >First name</label
+                            >
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.lastname}}
+                            <label class="form-label" for="form3Example1n"
+                              >Last name</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{teacher_creation.yearemployed}}
+                            <label class="form-label" for="form3Example1n1"
+                              >Year Employed</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        {{teacher_creation.nationalid}}
+                        <label class="form-label" for="form3Example8"
+                          >National ID</label
+                        >
+                      </div>
+
+                      <div
+                        class="d-md-flex justify-content-start align-items-center mb-4 py-2"
+                      >
+                        <h6 class="mb-0 me-4">Title:</h6>
+
+                        {{teacher_creation.tittle}}
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        {{teacher_creation.dateofbirth}}
+                        <label class="form-label" for="form3Example9"
+                          >Date of Birth</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        {{teacher_creation.address}}
+                        <label class="form-label" for="form3Example90"
+                          >Address</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        {{teacher_creation.phonenumber}}
+                        <label class="form-label" for="form3Example99"
+                          >Phone Number</label
+                        >
+                      </div>
+                      <div class="row d-flex justify-space-between">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.username}}
+                            <label class="form-label" for="form3Example1m1"
+                              >Username
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.email}}
+                            <label class="form-label" for="form3Example1m1"
+                              >Email</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row d-flex justify-space-between">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.password1}}
+                            <label class="form-label" for="form3Example1m1"
+                              >Password
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            {{auth_form.password2}}
+                            <label class="form-label" for="form3Example1m1"
+                              >Confirm Password</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-end pt-3">
+                        <button type="button" class="btn btn-light btn-lg">
+                          Reset all
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-warning btn-sm ms-2"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="back_to_login-link" class="text-right">
+          <a href="{% url 'principalHomepage' %}" class="text-info">Back</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

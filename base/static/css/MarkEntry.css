@@ -1,0 +1,17 @@
+body{
+    width: 100vw;
+    height:100vh;
+  
+}
+.header{
+    height: 10%;
+}
+.each-sub{
+    min-width:70px;
+
+
+}
+.search{
+ width: 300px;
+}
+

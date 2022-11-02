@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="{% static 'css/StudentAcademics.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>StudentAcademics</title>
+  </head>
+  <body>
+    <header
+      class="header bg-primary text-white d-flex align-items-center justify-content-between"
+    >
+      <h3 class="ml-3">Oriwo Boys Highschool</h3>
+      <h5 class="mr-5">Hello! Name</h5>
+    </header>
+    <div class="container">
+      <h2>STUDENT ACADEMICS SECTION</h2>
+      <h5 class="motto bg-secondary">MOTTO: Mbele daima</h5>
+      <hr />
+      <div class="sub-container">
+        <a class="Functionalities" href="#" id="showsubjects">
+          <h5>Enrolled subjects</h5>
+        </a>
+        <a class="Functionalities" href="{% url 'reportform' %}">
+          <h5>Sudent performance</h5>
+        </a>
+        <a class="Functionalities" href="#">
+          <h5>Unoficial transcript</h5>
+        </a>
+        <a class="Functionalities" href="#">
+          <h5>Student Ranking</h5>
+          <a class="Functionalities" href="#">
+            <h5>Downloads</h5>
+          </a>
+        </a>
+      </div>
+      <table
+        class="table table-bordered mt-5 w-50 visible"
+        id="enrolledsubjects"
+      >
+        <thead>
+          <th>Code</th>
+          <th>Subject Name</th>
+        </thead>
+        <tbody>
+          {% for each in subjects %}
+          <tr>
+            <td>{{ each.subjectID }}</td>
+            <td>{{ each.subjectname }}</td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="graph">Progress Graph</div>
+    </div>
+    <script src="{% static 'js/StudentAcademic.js' %}"></script>
+  </body>
+</html>

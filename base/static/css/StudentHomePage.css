@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+body{
+  background-color: rgb(214, 224, 226);
+  font-family: 'Roboto', sans-serif;
+}
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+.container{
+  display:flex;
+  width:100vw;
+  height:100vh;
+
+}
+.subcontainer{
+  display:flex;
+  flex-direction:column;
+  width: calc(100vw - 250px);
+  
+ 
+}
+.top-nav{
+  background-color: rgb(55, 48, 48);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width:100%;
+   height:5rem;
+
+  }
+  .top-nav h3{
+    color: white;
+  }
+
+.sidebar{
+  width: 250px;
+  height: 100%;
+  background: rgb(31, 31, 47);
+  transition: all .5s ease;
+  
+}
+.sidebar header{
+  font-size: 22px;
+  height: 5rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+ 
+ 
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgb(255, 255, 255, .1);
+  border-bottom: 1px solid black;
+  transition: .4s;
+}
+ul li:hover a{
+padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+.content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  grid-gap: 30px;
+  overflow: auto;
+}
+.Activities{
+  text-align: center;
+  padding: 25px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 200px;
+  margin: 10px;
+  background: transparent;
+  transition: transform 0.5s, background 0.5s;
+}
+.Activities i{
+  font-size: 40px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: blue;
+}
+.Activities h3{
+  font-weight: 600;
+  margin-bottom: 8px;
+  }
+  .Activities:hover{
+    background: #303ef7;
+    color: #fff;
+    transform: scale(1.05);
+  }
+  .Activities:hover i{
+    color: #fff;
+
+  }
+  .fa-bars{
+    color:white;
+    margin-left:1.2rem;
+
+    font-size: 1.5rem;    
+    display: none !important;
+  }
+@media screen and (max-width: 620px ) {
+.header{
+   font-size: "1.3rem"
+   
+}
+  .sidebar{
+   position:absolute;
+   left: -250px;
+   
+
+  }
+  .subcontainer{
+    width: 100vw;
+  }
+  .fa-bars{
+    display:flex !important;
+    z-index: 300;
+  }
+  .shownav{
+    left: 0;
+    transition: all 500ms ease-in-out;
+  }
+
+
+}
+
+
+
+
+

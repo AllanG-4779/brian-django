@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principal Home Page</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/PrincipalHomePage.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/f01816683f.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <header class="header">Main Menu</header>
+        <ul>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-house" aria-hidden="true"></i>Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-user" aria-hidden="true"></i>My Profile</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-link" aria-hidden="true"></i>Shortcuts</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-stream" aria-hidden="true"></i>Overview</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-calendar" aria-hidden="true"></i>Events</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-question-circle" aria-hidden="true"></i
+              >Help</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="subcontainer">
+        <div class="top-nav">
+          <i class="fa-solid fa-bars"></i>
+          <h2>Oriwo Boys High School</h2>
+          <h3>Motto: Mbele Daima</h3>
+          <h3><a href="{% url 'login' %}">Log out</a></h3>
+        </div>
+
+        <div class="content">
+          <a class="Activities" href="{% url 'teacherregistration' %}">
+            <i class="fa-solid fa-registered"></i>
+
+            <h3>Add Teacher</h3>
+            <p>Teachers are registered here into the system</p>
+          </a>
+          <a class="Activities" href="#">
+            <i class="fa-solid fa-envelope"></i>
+            <h3>Add Notifications</h3>
+            <p>New upcoming actities important to the school</p>
+          </a>
+          <a class="Activities" href="#">
+            <i class="fa-solid fa-landmark"></i>
+            <h3>Classes</h3>
+            <p>
+              Details showing all classes in the entire school are shown here
+            </p>
+          </a>
+          <a class="Activities" href="#">
+            <i class="fa-sharp fa-solid fa-calendar-days"></i>
+            <h3>Term Dates</h3>
+            <p>Important school Term dates to the school are scheduled here</p>
+          </a>
+          <a class="Activities" href="#">
+            <i class="fa-solid fa-bars-progress"></i>
+            <h3>View Teachers Progress</h3>
+            <p>
+              All about how the performance of a teachers are ranked for the
+              entire school
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/PrincipalHomePage.js' %}"></script>
+  </body>
+</html>

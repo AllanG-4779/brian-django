@@ -32,7 +32,9 @@
                 <p class="alert alert-primary">{{success}}</p>
                 <form method="POST" action="{% url 'registration' %}">
                   {% csrf_token %}
-                  <div class="row">
+                  {{student_signup.as_table}}
+                  {{student_creation.as_table}}
+                  <!-- <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
                         <input
@@ -164,7 +166,7 @@
                       </select>
                       <label class="form-label select-label">Level</label>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="mt-4 pt-2">
                     <input

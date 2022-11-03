@@ -6,7 +6,7 @@ from base.models import Subject
 from base.models import Exam
 from base.models import Term
 
-from base.forms import TeacherCreationForm, SignupForm
+from base.forms import TeacherCreationForm, SignupForm, StudentCreationform
 
 
 def HomePage(request):
@@ -57,24 +57,26 @@ def TeacherRegPage(request):
 
 def StudentRegPage(request):
     registration_status = {}
-    if (request.method == "POST"):
-        firstname = request.POST['firstname']
-        lastname = request.POST['lastname']
-        regNo = request.POST['regNo']
-        yearofAdmission = request.POST['yearofAdmission']
-        gender = request.POST['gender']
-        level = request.POST['level']
-        date = request.POST['date']
-        # import the model and create an object
-        my_current_class = Class.objects.filter(classname=level).first()
-        print(my_current_class)
+    student_signup = SignupForm(request.POST)
+    student_creation = StudentCreationform(request.POST)
+    # if (request.method == "POST"):
+    #     firstname = request.POST['firstname']
+    #     lastname = request.POST['lastname']
+    #     regNo = request.POST['regNo']
+    #     yearofAdmission = request.POST['yearofAdmission']
+    #     gender = request.POST['gender']
+    #     level = request.POST['level']
+    #     date = request.POST['date']
+    #     # import the model and create an object
+    #     my_current_class = Class.objects.filter(classname=level).first()
+    #     print(my_current_class)
 
-        student = StudentRegistration(date=date, firstname=firstname, lastname=lastname,
-                                      yearofAdmission=yearofAdmission, gender=gender, level=my_current_class, regNo=regNo)
-        student.save()
-        registration_status["success"] = "Successfully registered"
+    #     student = StudentRegistration(date=date, firstname=firstname, lastname=lastname,
+    #                                   yearofAdmission=yearofAdmission, gender=gender, level=my_current_class, regNo=regNo)
+    #     student.save()
+    #     registration_status["success"] = "Successfully registered"
 
-    return render(request, 'base/StudentRegPage.html', registration_status)
+    return render(request, 'base/StudentRegPage.html', { "student_signup":student_signup, "student_creation":student_creation})
 
 
 def TeacherHomePage(request):

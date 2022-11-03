@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from base.models import TeacherRegistration
+from base.models import TeacherRegistration,Class, StudentRegistration
 from django import forms
 
 from django.contrib.auth.models import User
@@ -30,6 +30,19 @@ class TeacherCreationForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TeacherCreationForm, self).__init__(*args, **kwargs)
+
+        for items in self.fields.values():
+            items.widget.attrs["class"] = "form-control form-control-sm"
+class StudentCreationform(ModelForm):
+    
+
+    class Meta:
+        model = StudentRegistration
+        exclude = ["auth_id"]
+        
+
+    def __init__(self, *args, **kwargs):
+        super(StudentCreationform, self).__init__(*args, **kwargs)
 
         for items in self.fields.values():
             items.widget.attrs["class"] = "form-control form-control-sm"

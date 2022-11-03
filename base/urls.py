@@ -15,6 +15,7 @@ urlpatterns = [
     path('teacher/profile/', views.TeacherProfile, name="teacherprofile"),
     path("teacher/marks/entry", views.MarkEntry, name="markentry"),
     path("student/academics", views.StudentAcademics, name="academics"),
-    path("report/form", views.Reportform, name="reportform")
+    path("report/form", views.Reportform, name="reportform"),
+    path("logout", views.user_logout, name="logout")
 ]
 urlpatterns += staticfiles_urlpatterns()

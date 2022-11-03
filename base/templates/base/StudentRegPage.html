@@ -33,6 +33,9 @@
                 <form method="POST" action="{% url 'registration' %}">
                   {% csrf_token %}
                   {{student_signup.as_table}}
+                  <br/>
+                  <br/>
+                  <hr>
                   {{student_creation.as_table}}
                   <!-- <div class="row">
                     <div class="col-md-6 mb-4">

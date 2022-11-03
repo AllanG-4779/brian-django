@@ -27,7 +27,16 @@
         >
           <div id="login-column" class="col-md-6">
             <div id="login-box" class="col-md-12">
-              <form id="login-form" class="form" action="" method="post">
+              {% if message %}
+               <p class="alert alert-danger">{{message}}</p>
+               {% endif %}
+              <form
+                id="login-form"
+                class="form"
+                action="{% url 'login' %}"
+                method="post"
+              >
+                {% csrf_token %}
                 <h3 class="text-center text-info">Login Page</h3>
                 <div class="form-group">
                   <label for="username" class="text-info">Username:</label

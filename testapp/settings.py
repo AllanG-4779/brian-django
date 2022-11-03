@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'testapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'cnd80751xh.',
-        'HOST': 'db.ygkbfdnuhedmnglancuw.supabase.co',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'oriwoboysschool',
+        'USER': 'allang',
+        'PASSWORD': 'cnd80751xh',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

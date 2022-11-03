@@ -14,6 +14,9 @@ class TeacherRegistration(models.Model):
     phone_number = models.CharField(max_length=10, null=False)  
     auth_id = models.OneToOneField(
         User, on_delete=models.CASCADE, default=None)
+    def __str__(self) :
+        return self.auth_id.first_name +" " + self.auth_id.last_name
+        
 
 
 class Subject(models.Model):
@@ -26,15 +29,16 @@ class Class(models.Model):
     classname = models.CharField(max_length=10, unique=True)
     classteacher = models.OneToOneField(
         TeacherRegistration, on_delete=models.DO_NOTHING)
+    def __str__(self) -> str:
+        return self.classname
+    
 
 
 class StudentRegistration(models.Model):
 
-    firstname = models.CharField(max_length=50, null=False)
-    lastname = models.CharField(max_length=50, null=False)
-    regNo = models.CharField(max_length=20, unique=True, null=False)
-    yearofAdmission = models.CharField(max_length=4, null=False)
-    date = models.CharField(max_length=10, null=False)
+  
+    year_of_admission = models.CharField(max_length=4, null=False)
+    date_of_birth= models.CharField(max_length=10, null=False)
     gender = models.CharField(max_length=6, null=False)
     level = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
     auth_id = models.OneToOneField(

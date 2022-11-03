@@ -5,7 +5,7 @@ from base.models import Class
 from base.models import Subject
 from base.models import Exam
 from base.models import Term
-from django.contrib.auth.forms import UserCreationForm
+
 from base.forms import TeacherCreationForm, SignupForm
 
 
@@ -24,22 +24,35 @@ def StudentHomePage(request):
 
 def TeacherRegPage(request):
     success = ""
-    teacher_creation = TeacherCreationForm(request.POST)
-    signup_form = SignupForm(request.POST)
-    # print(signup_form.data)
-    # print(teacher_creation.data)
+
+    signup_form  = SignupForm(request.POST)
+    teacher_creation  = TeacherCreationForm(request.POST)
+
     if signup_form.is_valid():
-        signup_form.save(commit=True)
+        
+        success= "auth is valid"
+        if teacher_creation.is_valid():
+           success="both are valid"
+           
+           user = signup_form.save(commit=True)
+           user.is_staff=True
+           user.save()
+           teacher = teacher_creation.data
+           TeacherRegistration(auth_id=user, phone_number=teacher.get('phone_number'),
+            year_employed=teacher.get('year_employed'),address=teacher.get('address'),
+             dob=teacher.get('dob'),national_id=teacher.get('national_id'),
+              gender = teacher.get('gender')).save()       
+           success = "User Created successfully"
+        else:
+            print(teacher_creation.non_field_errors.__get__('phone_number'))
+            success="Some additional details were not validated"
+            return render(request, "base/TeacherRegPage.html",
+             {"teacher_creation":teacher_creation, "signup_form":signup_form, "success":success})
     else:
-
-        user = signup_form.error_messages
-
-    # teacher = TeacherRegistration(firstname=teacher_creation.data.get("firstname"), lastname=teacher_creation.data.get("lastname"), tscnumber=signup_form.data.get("username"), yearemployed=teacher_creation.data.get("yearemployed"), nationalid=teacher_creation.data.get(
-    #     "nationalid"), tittle=teacher_creation.data.get("tittle"), dateofbirth=teacher_creation.data.get("dateofbirth"), address=teacher_creation.data.get("address"), phonenumber=teacher_creation.data.get("phonenumber"), auth_id=user)
-
-    # teacher.save()
-    success = "Kudos! It worked"
-    return render(request, 'base/TeacherRegPage.html', {"auth_form": signup_form, "teacher_creation": teacher_creation, "success": success})
+        success = "User not created, check you inputs and try again"
+   
+    return render(request, 'base/TeacherRegPage.html',
+     {"auth_form": signup_form, "teacher_creation": teacher_creation, "success": success})
 
 
 def StudentRegPage(request):

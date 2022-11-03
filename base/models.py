@@ -5,16 +5,13 @@ from django.contrib.auth.models import User
 
 
 class TeacherRegistration(models.Model):
-    firstname = models.CharField(max_length=50, null=False)
-    lastname = models.CharField(max_length=50, null=False)
-    tscnumber = models.CharField(max_length=10, unique=True, null=False)
-    yearemployed = models.CharField(max_length=4, null=False)
-    nationalid = models.CharField(max_length=8, unique=True, null=False)
-    tittle = models.CharField(max_length=4, null=False)
-    dateofbirth = models.DateField()
+   
+    year_employed = models.CharField(max_length=4, null=False)
+    national_id = models.CharField(max_length=8, unique=True, null=False)
+    gender = models.CharField(max_length=10, null=False)
+    dob = models.DateField()
     address = models.CharField(max_length=20, null=False)
-    phonenumber = models.CharField(max_length=10, null=False)
-    emailaddress = models.CharField(max_length=50, null=False)
+    phone_number = models.CharField(max_length=10, null=False)  
     auth_id = models.OneToOneField(
         User, on_delete=models.CASCADE, default=None)
 

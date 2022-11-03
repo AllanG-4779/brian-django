@@ -39,7 +39,14 @@
                     <h3 class="mb-5 text-uppercase">
                       Teacher registration form
                     </h3>
-                    <p class="alert alert-primary">{{success}}</p>
+                    <p class="alert alert-primary">
+                      <p class="alert alert-danger">{{success}}</p>
+                     {% if authError.non_field_errors %}
+                      <ul>
+                          {{ signup_form.field_errors.as_ul }}
+                      </ul>
+                      {% endif %}
+                    </p>
                     <form
                       method="POST"
                       action="{% url 'teacherregistration' %}"
@@ -48,18 +55,18 @@
                       <div class="row">
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
-                            {{auth_form.firstname}}
                             <label class="form-label" for="form3Example1m"
                               >First name</label
                             >
+                            {{auth_form.first_name}}
                           </div>
                         </div>
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
-                            {{auth_form.lastname}}
                             <label class="form-label" for="form3Example1n"
                               >Last name</label
                             >
+                            {{auth_form.last_name}}
                           </div>
                         </div>
                       </div>
@@ -67,36 +74,94 @@
                       <div class="row">
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
-                            {{teacher_creation.yearemployed}}
-                            <label class="form-label" for="form3Example1n1"
-                              >Year Employed</label
+                            <label class="form-label" for="form3Example1m"
+                              >TSC Number</label
                             >
+                            {{auth_form.username}}
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1n"
+                              >Email</label
+                            >
+                            {{auth_form.email}}
                           </div>
                         </div>
                       </div>
-
-                      <div class="form-outline mb-4">
-                        {{teacher_creation.nationalid}}
-                        <label class="form-label" for="form3Example8"
-                          >National ID</label
-                        >
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1m"
+                              >Password</label
+                            >
+                            {{auth_form.password1}}
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1n"
+                              >Confirm Password</label
+                            >
+                            {{auth_form.password2}}
+                          </div>
+                        </div>
                       </div>
-
-                      <div
-                        class="d-md-flex justify-content-start align-items-center mb-4 py-2"
-                      >
-                        <h6 class="mb-0 me-4">Title:</h6>
-
-                        {{teacher_creation.tittle}}
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1m"
+                              >Phone number</label
+                            >
+                            {{teacher_creation.phone_number}}
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1n"
+                              >National ID</label
+                            >
+                            {{teacher_creation.national_id}}
+                          </div>
+                        </div>
                       </div>
-
-                      <div class="form-outline mb-4">
-                        {{teacher_creation.dateofbirth}}
-                        <label class="form-label" for="form3Example9"
-                          >Date of Birth</label
-                        >
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1m"
+                              >Year of Employment</label
+                            >
+                            {{teacher_creation.year_employed}}
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1n"
+                              >Address</label
+                            >
+                            {{teacher_creation.address}}
+                          </div>
+                        </div>
                       </div>
-
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1m"
+                              >Year of Employment</label
+                            >
+                            {{teacher_creation.dob}}
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1n"
+                              >Gender</label
+                            >
+                            {{teacher_creation.gender}}
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 
                       <div class="form-outline mb-4">
                         {{teacher_creation.address}}
                         <label class="form-label" for="form3Example90"
@@ -145,18 +210,15 @@
                             >
                           </div>
                         </div>
-                      </div>
+                      </div> -->
 
-                      <div class="d-flex justify-content-end pt-3">
-                        <button type="button" class="btn btn-light btn-lg">
-                          Reset all
-                        </button>
-                        <button
-                          type="submit"
-                          class="btn btn-warning btn-sm ms-2"
-                        >
-                          Submit
-                        </button>
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <input
+                            type="submit"
+                            class="form-control btn btn-sm btn-primary"
+                          />
+                        </div>
                       </div>
                     </form>
                   </div>

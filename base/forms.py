@@ -10,20 +10,23 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = [ "username",
-                  "email", "password1", "password2"]
+        fields = ['first_name', 'last_name', "username", "email", "password1", "password2"]
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        for items in self.fields.values():
+            items.widget.attrs['class'] = "form-control form-control-sm flex"
 
 
 class TeacherCreationForm(ModelForm):
-    CHOICES = [("Mr", "Mr"), ("Mrs", "Mrs"), ("Miss", "Miss"), ]
-    tittle = forms.ChoiceField(
+    CHOICES = [("Male", "Male"), ("Female", "Female"), ("Other", "Other"), ]
+    gender = forms.ChoiceField(
         choices=CHOICES,  widget=forms.RadioSelect(),)
-    dateofbirth = forms.DateField(widget=forms.DateTimeInput(
+    dob = forms.DateField(widget=forms.DateTimeInput(
         attrs={"type": "date"}))
 
     class Meta:
         model = TeacherRegistration
-        fields = '__all__'
+        fields = ['gender', 'dob', 'year_employed', 'phone_number', 'national_id', 'address']
 
     def __init__(self, *args, **kwargs):
         super(TeacherCreationForm, self).__init__(*args, **kwargs)

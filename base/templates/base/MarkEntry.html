@@ -20,7 +20,9 @@
     class="header bg-primary text-white d-flex align-items-center justify-content-between"
   >
     <h3 class="ml-3">Oriwo Boys Highschool</h3>
-    <h5 class="mr-5">Hello Teacher: Name</h5>
+    <h5 class="mr-5">Hello Teacher: <span class="text-warning">{{request.user.first_name}} {{request.user.last_name}}</span></h5>
+    <h5>You are in </h5>
+
   </header>
   <div class="container">
     <h3>Student Marks Entry</h3>
@@ -59,10 +61,10 @@
         {% for each in studentList %}
         <tr>
          <td> {{ studentList|length }}</td>
-         <td> {{each.firstname}} {{each.lastname}}</td>
-         <td> {{each.regNo}}</td>
+         <td> {{each.auth_id.first_name}} {{each.auth_id.lastname}}</td>
+         <td> {{each.auth_id.username}}</td>
          <td><form action="{% url 'markentry' %}" method="GET">
-          <input type="hidden" value="{{ each.regNo }}" name="admission">
+          <input type="hidden" value="{{ each.auth_id.username }}" name="admission">
           <button href="#markentry" type="submit" class="btn btn-sm btn-primary">Add Marks</button>
          </form></td>
         </tr>

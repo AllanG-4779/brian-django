@@ -7,6 +7,7 @@ from base.models import Exam
 from base.models import Term
 from django.shortcuts import redirect
 from django.contrib.auth  import login, logout, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from base.forms import TeacherCreationForm, SignupForm, StudentCreationform
@@ -155,20 +156,28 @@ def MarkEntry(request):
     subjects_query = Subject.objects.all()
     # Get all the subject in a specific form from the authenticated teacher
     # for now use student from form 2
-    class_of_logged_in_teacher = Class.objects.filter(classteacher=2).first()
-    studentList = StudentRegistration.objects.filter(
-        level=class_of_logged_in_teacher).all()
+    user_id = request.user.id
+    logged_in_teacher = TeacherRegistration.objects.filter(auth_id=user_id).first()
+    if logged_in_teacher is None:
+        return redirect("/")
+    print(type(logged_in_teacher.id))
+    class_of_logged_in_teacher = Class.objects.filter(classteacher=(logged_in_teacher.id)).get()
+    print(class_of_logged_in_teacher.classID)
+
+    studentList = StudentRegistration.objects.all().filter(level=class_of_logged_in_teacher.id)
+
 
     subjects = [x.subjectname for x in subjects_query.all()]
     active_student = None
     if request.method == "PUT":
         search_admission = request.PUT.get("admission")
-        studentList = studentList.filter(regNo=search_admission)
+        studentList = studentList.filter(auth_id=search_admission).get()
 
     if request.method == "GET":
         Admission = request.GET.get("admission")
-        active_student = StudentRegistration.objects.filter(
-            regNo=Admission).first()
+        
+        active_student = StudentRegistration.objects.all().filter(
+            auth_id=User.objects.all().filter(username=Admission).first())
 
         if not active_student:
             message = "Student not found, Ensure the student belong to your class"
@@ -177,24 +186,21 @@ def MarkEntry(request):
     marks_status = {}
     if request.method == "POST":
 
-        admission_no = request.POST.get("admission")
-
-        active_student = StudentRegistration.objects.filter(
-            regNo=admission_no).first()
+       
         SelectExamType = request.POST.get('exam_type')
-        BUSINESS = request.POST.get('BUSINESS')
+        BUSINESS = request.POST.get('')
         CHEMISTRY = request.POST.get('CHEMISTRY')
         CRE = request.POST.get('CRE')
         ENGLISH = request.POST.get('ENGLISH')
         GEOGRAPHY = request.POST.get('GEOGRAPHY')
-        KISWAHILI = request.POST.get('KISWAHILI')
-        MATHEMATICS = request.POST.get('MATHEMATICS')
-        PHYSICS = request.POST.get('PHYSICS')
-        BIOLOGY = request.POST.get('BIOLOGY')
-        AGRICULTURE = request.POST.get('AGRICULTURE')
-        HISTORY = request.POST.get('HISTORY')
-        MUSIC = request.POST.get('MUSIC')
-        COMPUTERSTUDIES = request.POST.get('COMPUTER STUDIES')
+        # KISWAHILI = request.POST.get('KISWAHILI')
+        # MATHEMATICS = request.POST.get('MATHEMATICS')
+        # PHYSICS = request.POST.get('PHYSICS')
+        # BIOLOGY = request.POST.get('BIOLOGY')
+        # AGRICULTURE = request.POST.get('AGRICULTURE')
+        # HISTORY = request.POST.get('HISTORY')
+        # MUSIC = request.POST.get('MUSIC')
+        # COMPUTERSTUDIES = request.POST.get('COMPUTER STUDIES')
 
         student_marks = []
         if not(BUSINESS is None):
